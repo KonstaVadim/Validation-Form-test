@@ -1,0 +1,197 @@
+
+$heightStrip: 40px;
+
+@mixin flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin btn-color() {
+  background-color: rgb(235, 142, 61);
+  color: #fff;
+
+  &:hover {
+    background-color: rgb(230, 120, 23);
+    box-shadow: 0 0 5px -2px #000;
+  }
+}
+
+@mixin nav-btn() {
+  @include btn-color();
+  @include flex-center();
+
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: $heightStrip;
+}
+
+@mixin btn-next() {
+  @include btn-color();
+
+  display: inline-flex;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+@mixin field-container() {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  margin-bottom: 20px;
+
+  label span {
+    color: #990000;
+  }
+
+  label {
+    margin-left: 10px;
+  }
+
+  input:not([type=checkbox]) {
+    width: 400px;
+    height: 30px;
+    border: 1px solid #999999;
+    padding: 0 10px;
+    outline: none;
+    font-size: 14px;
+    border-radius: 15px;
+
+    &:focus {
+      box-shadow: 0 0 2px 0 #000;
+    }
+  }
+
+}
+
+@mixin checkbox() {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+@mixin checkbox() {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+@mixin box-shadow-red() {
+  box-shadow: 0 0 2px 0 #FF0000;
+}
+
+.nav-menu {
+  @include flex-center();
+  flex-direction: column;
+  width: 20%;
+
+  .nav-btn {
+    @include nav-btn();
+
+    &:not(:last-child):after {
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, 0);
+      height: $heightStrip;
+      width: 2px;
+      background-color: #cccccc;
+      content: '';
+    }
+  }
+}
+
+.input-form-container {
+  @include flex-center();
+
+  width: 80%;
+
+  .field-container {
+    @include field-container();
+
+    .select-container {
+      position: relative;
+
+      #date_time {
+        cursor: pointer;
+      }
+
+      input {
+        padding-right: 45px;
+      }
+
+      span {
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+    }
+  }
+
+  .btn-next {
+    @include btn-next();
+  }
+
+  .checkbox-form {
+
+    .field-container {
+      @include flex-center();
+      flex-direction: row;
+
+      input[type=checkbox] {
+        @include checkbox();
+      }
+    }
+  }
+
+  .box-shadow-red {
+    @include box-shadow-red();
+  }
+
+}
+
+.modal-map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  background-color: rgba(0, 0, 0, 0.4);
+
+  #map {
+
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.map-container {
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background: url('../../assets/close.png') 100% 100% no-repeat;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.ng-hide {
+  display: none;
+}

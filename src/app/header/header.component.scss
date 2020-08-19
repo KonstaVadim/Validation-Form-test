@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 15px 40px;
-    background-color: RGB(244, 188, 132);
+    background-color: rgb(244, 188, 132);
 
     img {
       width: 80%;
@@ -18,7 +18,7 @@
         cursor: pointer;
 
         &:hover {
-          color: rgb(230, 120, 23)
+          color: rgb(230, 120, 23);
         }
       }
     }
