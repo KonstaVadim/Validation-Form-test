@@ -1,105 +1,111 @@
-<!-- Навигационное меню с кнопка перехода -->
-<div class="nav-menu">
-  <div class="nav-btn" (click)="numberStage = 1">1</div>
-  <div class="nav-btn" (click)="numberStage = 2">2</div>
-  <div class="nav-btn" (click)="numberStage = 3">3</div>
+<div class="title-block">
+  <h2>Ввод данных</h2>
 </div>
 
-<!-- Контейнер с формами для ввода данных -->
-<div class="input-form-container">
-  <!-- Форма с вводом ФИО -->
-  <form [formGroup]="reactiveFormFirstStage">
-    <div class="input-form" *ngIf="numberStage == 1">
-      <!-- Контейнер с полем ввода имени -->
-      <div class="field-container">
-        <label for="first_name">Имя <span>*</span> :</label>
-        <input type="text" id="first_name" [class.box-shadow-red]="_firstName.invalid && _firstName.touched"
-          formControlName="first_name" required placeholder="Введите ваше имя">
-      </div>
+<div class="content">
+  <!-- Навигационное меню с кнопка перехода -->
+  <div class="nav-menu">
+    <div class="nav-btn" (click)="numberStage = 1" title="Первый этап">1</div>
+    <div class="nav-btn" (click)="numberStage = 2" title="Второй этап">2</div>
+    <div class="nav-btn" (click)="numberStage = 3" title="Третий этап">3</div>
+  </div>
 
-      <!-- Контейнер с полем ввода фамилии -->
-      <div class="field-container">
-        <label for="last_name">Фамилия <span>*</span> :</label>
-        <input type="text" id="last_name" [class.box-shadow-red]="_last_name.invalid && _last_name.touched"
-          formControlName="last_name" required placeholder="Введите вашу фамилию">
-      </div>
-      <!-- Кнопка "Продолжить" -->
-      <div class="btn-next" (click)="changeStage()">
-        <span>Продолжить</span>
-      </div>
-    </div>
+  <!-- Контейнер с формами для ввода данных -->
+  <div class="input-form-container">
+    <!-- Форма с вводом ФИО -->
+    <form [formGroup]="reactiveFormFirstStage">
+      <div class="input-form" *ngIf="numberStage == 1" @animateBlock>
+        <!-- Контейнер с полем ввода имени -->
+        <div class="field-container">
+          <label for="first_name">Имя <span>*</span> :</label>
+          <input type="text" id="first_name" [class.box-shadow-red]="_firstName.invalid && _firstName.touched"
+            formControlName="first_name" required placeholder="Введите ваше имя">
+        </div>
 
-  </form>
-  <!-- Форма с вводом остальных данных -->
-  <form [formGroup]="reactiveFormSecondStage">
-    <div class="input-form" *ngIf="numberStage == 2">
-      <!-- Email -->
-      <div class="field-container">
-        <label for="email">Email <span>*</span> :</label>
-        <input type="text" id="email" [class.box-shadow-red]="_email.invalid && _email.touched" formControlName="email"
-          required email placeholder="Введите email">
-      </div>
-
-      <!-- Номер телефона -->
-      <div class="field-container">
-        <label for="phone">Номер телефона <span>*</span> :</label>
-        <input type="text" id="phone" [class.box-shadow-red]="_number_phone.invalid && _number_phone.touched"
-          formControlName="number_phone" required pattern="^\d[\d\(\)\ -]{4,14}\d$"
-          placeholder="Введите номер телефона">
-      </div>
-
-      <!-- Адрес -->
-      <div class="field-container">
-        <label for="address">Адрес <span>*</span> :</label>
-        <div class="select-container">
-          <input type="text" id="address" [class.box-shadow-red]="_address.invalid && _address.touched"
-            formControlName="address" required placeholder="Введите адрес" autocomplete="dis">
-          <span class="material-icons" (click)="activeModal = 'app-modal-map'" title="Открыть карту">place</span>
+        <!-- Контейнер с полем ввода фамилии -->
+        <div class="field-container">
+          <label for="last_name">Фамилия <span>*</span> :</label>
+          <input type="text" id="last_name" [class.box-shadow-red]="_last_name.invalid && _last_name.touched"
+            formControlName="last_name" required placeholder="Введите вашу фамилию">
+        </div>
+        <!-- Кнопка "Продолжить" -->
+        <div class="btn-next" (click)="changeStage()">
+          <span>Продолжить</span>
         </div>
       </div>
 
-      <!-- Дата и время -->
-      <div class="field-container">
-        <label for="date_time">Дата и время <span>*</span> :</label>
-        <div class="select-container">
-          <input type="text" id="date_time" [class.box-shadow-red]="_date_time.invalid && _date_time.touched"
-            [owlDateTime]="dateTime" [owlDateTimeTrigger]="dateTime" formControlName="date_time" required readonly
-            placeholder="Выберите дату и время">
-          <span class="material-icons" [owlDateTimeTrigger]="dateTime">calendar_today</span>
-          <owl-date-time #dateTime></owl-date-time>
+    </form>
+    <!-- Форма с вводом остальных данных -->
+    <form [formGroup]="reactiveFormSecondStage">
+      <div class="input-form" *ngIf="numberStage == 2" @animateBlock>
+        <!-- Email -->
+        <div class="field-container">
+          <label for="email">Email <span>*</span> :</label>
+          <input type="text" id="email" [class.box-shadow-red]="_email.invalid && _email.touched"
+            formControlName="email" required email placeholder="Введите email">
         </div>
 
-      </div>
+        <!-- Номер телефона -->
+        <div class="field-container">
+          <label for="phone">Номер телефона <span>*</span> :</label>
+          <input type="text" id="phone" [class.box-shadow-red]="_number_phone.invalid && _number_phone.touched"
+            formControlName="number_phone" required pattern="^\d[\d\(\)\ -]{4,14}\d$"
+            placeholder="Введите номер телефона">
+        </div>
 
-      <!-- Кнопка "Продолжить" -->
-      <div class="btn-next" (click)="changeStage()">
-        <span>Продолжить</span>
-      </div>
-    </div>
-  </form>
-  <!-- Форма с вводом соглашениями -->
-  <form [formGroup]="reactiveFormThirdStage">
-    <div class="checkbox-form" *ngIf="numberStage == 3">
-      <!-- Обработка персональных данных -->
-      <div class="field-container">
-        <input type="checkbox" id="personal_data"
-          [class.box-shadow-red]="_personal_data.invalid && _personal_data.touched" formControlName="personal_data"
-          required>
-        <label for="personal_data">Подтверждаю согласие на обработку персональных данных <span>*</span></label>
-      </div>
-      <!-- Оповещение -->
-      <div class="field-container">
-        <input type="checkbox" id="notification" formControlName="notification">
-        <label for="notification">Оповещать, если по данному адресу найдены происшествия</label>
-      </div>
+        <!-- Адрес -->
+        <div class="field-container">
+          <label for="address">Адрес <span>*</span> :</label>
+          <div class="select-container">
+            <input type="text" id="address" [class.box-shadow-red]="_address.invalid && _address.touched"
+              formControlName="address" required placeholder="Введите адрес" autocomplete="dis">
+            <span class="material-icons" (click)="activeModal = 'app-modal-map'" title="Открыть карту">place</span>
+          </div>
+        </div>
 
-      <!-- Кнопка "Зарегистрироваться" -->
-      <div class="btn-next" (click)="changeStage()">
-        <span>Зарегистрироваться</span>
+        <!-- Дата и время -->
+        <div class="field-container">
+          <label for="date_time">Дата и время <span>*</span> :</label>
+          <div class="select-container">
+            <input type="text" id="date_time" [class.box-shadow-red]="_date_time.invalid && _date_time.touched"
+              [owlDateTime]="dateTime" [owlDateTimeTrigger]="dateTime" formControlName="date_time" required readonly
+              placeholder="Выберите дату и время">
+            <span class="material-icons" [owlDateTimeTrigger]="dateTime">calendar_today</span>
+            <owl-date-time #dateTime></owl-date-time>
+          </div>
+
+        </div>
+
+        <!-- Кнопка "Продолжить" -->
+        <div class="btn-next" (click)="changeStage()">
+          <span>Продолжить</span>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+    <!-- Форма с вводом соглашениями -->
+    <form [formGroup]="reactiveFormThirdStage">
+      <div class="checkbox-form" *ngIf="numberStage == 3" @animateBlock>
+        <!-- Обработка персональных данных -->
+        <div class="field-container">
+          <input type="checkbox" id="personal_data"
+            [class.box-shadow-red]="_personal_data.invalid && _personal_data.touched" formControlName="personal_data"
+            required>
+          <label for="personal_data">Подтверждаю согласие на обработку персональных данных <span>*</span></label>
+        </div>
+        <!-- Оповещение -->
+        <div class="field-container">
+          <input type="checkbox" id="notification" formControlName="notification">
+          <label for="notification">Оповещать, если по данному адресу найдены происшествия</label>
+        </div>
+
+        <!-- Кнопка "Завершить" -->
+        <div class="btn-next" (click)="changeStage()">
+          <span>Завершить</span>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 <!-- Карта в модальном окне -->
-<app-modal-map *ngIf="activeModal == 'app-modal-map'" (closeModal)="closeActiveModal($event)"
+<app-modal-map *ngIf="activeModal == 'app-modal-map'" (closeModal)="closeActiveModal($event)" @animateModal
   (changeAddress)="changeAddress($event)"></app-modal-map>

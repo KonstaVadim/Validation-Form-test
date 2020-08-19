@@ -1,4 +1,3 @@
-
 $heightStrip: 40px;
 
 @mixin flex-center() {
@@ -83,6 +82,17 @@ $heightStrip: 40px;
 
 @mixin box-shadow-red() {
   box-shadow: 0 0 2px 0 #FF0000;
+}
+
+.title-block {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  margin-bottom: 20px;
 }
 
 .nav-menu {

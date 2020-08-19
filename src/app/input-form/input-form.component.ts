@@ -2,18 +2,36 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 import { DateTimeAdapter } from "ng-pick-datetime";
-import { ModalMapComponent } from '../modal-map/modal-map.component';
+import { transition, trigger, animate, state, style, query } from '@angular/animations';
 @Component({
   selector: "app-input-form",
   templateUrl: "./input-form.component.html",
   styleUrls: ["./input-form.component.scss"],
+  animations: [
+    trigger('animateBlock', [
+      transition(':enter', [
+        style({opacity: 0}),
+        animate('500ms', style({opacity: 1}))
+      ])
+    ]),
+    trigger('animateModal', [
+      transition(':leave', [
+        style({opacity: 1}),
+        animate('500ms', style({opacity: 0}))
+      ]),
+      transition(':enter', [
+        style({opacity: 0}),
+        animate('500ms', style({opacity: 1}))
+      ]),
+      
+    ])
+  ]
 })
 export class InputFormComponent implements OnInit  {
 
   numberStage: number = 1; /* Номер открытого этапа */
 
   activeModal: string; // активное модальное окно первого уровня
-  dt1: string = ''; // активное модальное окно первого уровня
 
   /* Формы для каждого этапа */
   reactiveFormFirstStage: FormGroup; //Форма первого этапа
@@ -81,12 +99,12 @@ export class InputFormComponent implements OnInit  {
       this.numberStage++;
     } else {
       // если последний этап - завершаем
-      this.checkIn();
+      this.completeDataEntry();
     }
   }
 
-  /* Регистрация */
-  checkIn() {
+  /* Завершение заполнения данных */
+  completeDataEntry() {
     /* Проверяем на валидность первый этап, в случае, когда мы перешли на последний через меню */
     if (this.reactiveFormFirstStage.invalid) {
       // Если есть невалидные данные, то перемещаемся к данному этапу и подкрашиваем
